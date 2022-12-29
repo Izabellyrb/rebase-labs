@@ -2,7 +2,7 @@ require 'sinatra'
 require 'rack/handler/puma'
 require 'csv'
 
-get '/tests' do
+get '/api/tests' do
   rows = CSV.read("./data.csv", col_sep: ';')
 
   columns = rows.shift
@@ -13,6 +13,14 @@ get '/tests' do
       acc[column] = cell
     end
   end.to_json
+end
+
+get '/mdata' do
+  ImportFromCsv.all.to_json
+end
+
+get '/' do
+  File.read('./public/index.html')
 end
 
 get '/hello' do

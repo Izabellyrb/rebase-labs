@@ -1,0 +1,15 @@
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0 3rem 1rem;
+  padding: 0 1rem;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 62,5%;
+  background-image: linear-gradient(to bottom, #770ccf, #b485cf);
+}
+
+body.ul {
+  font-size: 2rem;
+}
