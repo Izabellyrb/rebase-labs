@@ -5,7 +5,7 @@ class ImportFromCsv
   attr_accessor :conn
 
   def initialize
-    @conn = PG.connect(host: 'postgres', dbname: 'medical_data', user: 'postgres')
+    @conn = PG.connect(host: 'postgres', dbname: 'm_data', user: 'postgres')
     create_table
     insert_data
   end
@@ -64,7 +64,8 @@ class ImportFromCsv
     end
   end
 
-  def all
-    @conn.exec('SELECT * FROM EXAMS').to_a
+  def self.all #test
+    exams = conn.exec('SELECT * FROM EXAMS')
+    exams.map { |e| e }.to_json
   end
 end

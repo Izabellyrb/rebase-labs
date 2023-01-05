@@ -1,6 +1,8 @@
 require 'sinatra'
 require 'rack/handler/puma'
 require 'csv'
+require_relative 'import_from_csv'
+
 
 get '/api/tests' do
   rows = CSV.read("./data.csv", col_sep: ';')
@@ -16,7 +18,12 @@ get '/api/tests' do
 end
 
 get '/mdata' do
-  ImportFromCsv.all.to_json
+  ImportFromCsv.new
+  conn = PG.connect(host: 'postgres', dbname: 'm_data', user: 'postgres')
+  exams = conn.exec('SELECT * FROM EXAMS')
+  exams.map { |e| e }.to_json
+  # ImportFromCsv.new
+  # ImportFromCsv.all.to_json
 end
 
 get '/' do
