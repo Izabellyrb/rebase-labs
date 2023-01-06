@@ -18,12 +18,7 @@ get '/api/tests' do
 end
 
 get '/mdata' do
-  ImportFromCsv.new
-  conn = PG.connect(host: 'postgres', dbname: 'm_data', user: 'postgres')
-  exams = conn.exec('SELECT * FROM EXAMS')
-  exams.map { |e| e }.to_json
-  # ImportFromCsv.new
-  # ImportFromCsv.all.to_json
+  ImportFromCsv.new.all
 end
 
 get '/' do

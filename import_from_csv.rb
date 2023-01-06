@@ -10,22 +10,8 @@ class ImportFromCsv
     insert_data
   end
 
-  def csv_data
-    rows = CSV.read("./data.csv", col_sep: ';')
-
-    columns = rows.shift
-
-    rows.map do |row|
-      row.each_with_object({}).with_index do |(cell, acc), idx|
-        column = columns[idx]
-        acc[column] = cell
-      end
-    end
-  end  
-
   def create_table
-    @conn.exec("
-        CREATE TABLE EXAMS(
+    @conn.exec("CREATE TABLE IF NOT EXISTS EXAMS (
           id SERIAL PRIMARY KEY,
           cpf VARCHAR(14) NOT NULL,
           nome_paciente VARCHAR(150) NOT NULL,
@@ -47,6 +33,19 @@ class ImportFromCsv
     ")
   end
 
+  def csv_data
+    rows = CSV.read("./data.csv", col_sep: ';')
+
+    columns = rows.shift
+
+    rows.map do |row|
+      row.each_with_object({}).with_index do |(cell, acc), idx|
+        column = columns[idx]
+        acc[column] = cell
+      end
+    end
+  end
+
   def insert_data
     csv_data.each do |row|
       @conn.exec(
@@ -55,7 +54,7 @@ class ImportFromCsv
           crm_médico_estado, nome_médico, email_médico, token_resultado_exame,
           data_exame, tipo_exame, limites_tipo_exame, resultado_tipo_exame)
           VALUES ('#{row['cpf']}', '#{row['nome paciente']}', '#{row['email paciente']}', '#{row['data nascimento paciente']}', '#{row['endereço/rua paciente']}',
-                  '#{row['cidade paciente']}', '#{row['estado patiente']}',
+                  '#{@conn.escape_string(row['cidade paciente'])}', '#{row['estado patiente']}',
                   '#{row['crm médico']}', '#{row['crm médico estado']}',
                   '#{row['nome médico']}', '#{row['email médico']}',
                   '#{row['token resultado exame']}', '#{row['data exame']}',
@@ -64,8 +63,8 @@ class ImportFromCsv
     end
   end
 
-  def self.all #test
-    exams = conn.exec('SELECT * FROM EXAMS')
-    exams.map { |e| e }.to_json
+  def all
+    exams = @conn.exec('SELECT * FROM EXAMS')
+    exams.map { |exam| exam }.to_json
   end
 end
