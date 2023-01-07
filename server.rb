@@ -17,16 +17,12 @@ get '/api/tests' do
   end.to_json
 end
 
-get '/mdata' do
+get '/api/mdata' do
   ImportFromCsv.new.all
 end
 
 get '/' do
   File.read('./public/index.html')
-end
-
-get '/hello' do
-  'Hello world!'
 end
 
 Rack::Handler::Puma.run(
