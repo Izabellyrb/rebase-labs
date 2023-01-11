@@ -10,6 +10,12 @@ Uma app web para listagem de exames médicos.
 * HTML
 * CSS
 
+## Atualizações na app
+[x] Importação dos dados do CSV para o banco de dados SQL (lab 1);
+[x] Exibição da listagem de exames de forma mais amigavel ao usuário no localhost (lab 2);
+[] Criar endpoint para importar os dados do CSV de forma assíncrona (lab 3) _em desenvolvimento_;
+[] Filtrar exames a partir de um token de resultado (lab 4)
+
 ## Premissa
 
 A premissa principal deste laboratório é que a app **não seja feita em Rails**, devendo seguir o padrão **Sinatra** que há neste projeto, ou então se preferir, podendo utilizar outro web framework que **não** seja Rails, por ex. grape, padrino, rack, etc ou até mesmo um HTTP/TCP server "na mão".
