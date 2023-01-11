@@ -8,9 +8,14 @@ services:
       - .:/app
       - rubygems:/usr/local/bundle
       - gemconfig:/root/.local/share/gem
+    environment:
+      REDIS_URL: redis://redis:6379/0
+      
     ports:
       - "3000:3000"
-    command: "bundle && ruby server.rb"
+    
+  redis:
+    image: redis
     
 volumes:
   rubygems:

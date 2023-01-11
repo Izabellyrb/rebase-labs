@@ -17,6 +17,14 @@ get '/api/tests' do
   end.to_json
 end
 
+post '/import' do
+  #csv = request.body.read
+
+  MyJob.perfom_async
+
+  'Ok'
+end
+
 get '/api/mdata' do
   ImportFromCsv.new.all
 end
