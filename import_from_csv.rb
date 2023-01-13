@@ -1,5 +1,6 @@
 require 'csv'
 require 'pg'
+require './app/jobs/my_job'
 
 class ImportFromCsv
   attr_accessor :conn
@@ -11,7 +12,8 @@ class ImportFromCsv
   end
 
   def create_table
-    @conn.exec("CREATE TABLE IF NOT EXISTS EXAMS (
+    @conn.exec("DROP TABLE IF EXISTS EXAMS;")
+    @conn.exec("CREATE TABLE EXAMS (
           id SERIAL PRIMARY KEY,
           cpf VARCHAR(14) NOT NULL,
           nome_paciente VARCHAR(150) NOT NULL,
@@ -64,7 +66,7 @@ class ImportFromCsv
   end
 
   def all
-    exams = @conn.exec('SELECT * FROM EXAMS LIMIT 10')
+    exams = @conn.exec('SELECT * FROM EXAMS LIMIT 10').to_a
     exams.map { |exam| exam }.to_json
   end
 end

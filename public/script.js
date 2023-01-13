@@ -1,4 +1,3 @@
-const fragment = new DocumentFragment();
 const url = 'http://localhost:3000/api/mdata';
 const results = document.getElementById("results")
 

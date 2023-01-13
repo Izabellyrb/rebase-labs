@@ -20,7 +20,7 @@ end
 post '/import' do
   #csv = request.body.read
 
-  MyJob.perfom_async
+  MyJob.perform_async
 
   'Ok'
 end

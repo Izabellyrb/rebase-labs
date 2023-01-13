@@ -3,6 +3,7 @@ version: '3.9'
 services:
   app:
     image: 'ruby'
+    command: sh -c "bundle && ruby server.rb" 
     working_dir: /app
     volumes:
       - .:/app
@@ -10,13 +11,21 @@ services:
       - gemconfig:/root/.local/share/gem
     environment:
       REDIS_URL: redis://redis:6379/0
-      
     ports:
       - "3000:3000"
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes: 
+      - pgdata_rebase_labs:/var/lib/postgresql/data
     
   redis:
     image: redis
-    
+
+
 volumes:
   rubygems:
   gemconfig:
+  pgdata_rebase_labs:

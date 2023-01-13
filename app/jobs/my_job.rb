@@ -3,10 +3,8 @@ require 'sidekiq'
 class MyJob
   include Sidekiq::Job
 
-  def perform
-    puts 'My job is done'
-    #ImportToDatabase.import(csv)
+  def perform(csv)
+    MyQuery.new.import_from_csv(csv)
+    puts 'Exames foram importados.'
   end
 end
-
-#perform = logica do job (import)
