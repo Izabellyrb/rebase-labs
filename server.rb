@@ -1,7 +1,7 @@
 require 'sinatra'
+require 'pg'
 require 'rack/handler/puma'
-require 'csv'
-require_relative 'import_from_csv'
+require './data.rb'
 
 
 get '/api/tests' do
@@ -17,16 +17,17 @@ get '/api/tests' do
   end.to_json
 end
 
-post '/import' do
-  #csv = request.body.read
+# post '/import' do
+#   #csv = request.body.read
 
-  MyJob.perform_async
+#   MyJob.perform_async
 
-  'Ok'
-end
+#   'Ok'
+# end
 
 get '/api/mdata' do
-  ImportFromCsv.new.all
+  content_type :json
+  import = Data.new.all.to_json
 end
 
 get '/' do
