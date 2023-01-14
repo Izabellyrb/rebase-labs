@@ -28,12 +28,12 @@ get '/api/mdata' do
 end
 
 post '/import' do
-  Data.new.insert_data(params[:json_data])
+  Data.new.insert_data
   'Arquivo importado!'
 end
 
 post '/import_async' do
-  MyJob.perform_async(params[:json_data])
+  MyJob.perform_async
 
 end
 

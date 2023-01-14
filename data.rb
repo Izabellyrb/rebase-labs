@@ -21,7 +21,7 @@ class Data
     end
   end
 
-  def insert_data(json_data)
+  def insert_data
     csv_data.each do |row|
       @conn.exec(
         "INSERT INTO EXAMS (cpf, nome_paciente, email_paciente, data_nascimento_paciente, 
@@ -36,6 +36,29 @@ class Data
                   '#{row['tipo exame']}', '#{row['limites tipo exame']}', #{row['resultado tipo exame']})"
       )
     end
+  end
+
+  def create_table
+    @conn.exec("CREATE TABLE EXAMS (
+      id SERIAL PRIMARY KEY,
+      cpf VARCHAR(14) NOT NULL,
+      nome_paciente VARCHAR(150) NOT NULL,
+      email_paciente VARCHAR(150) NOT NULL,
+      data_nascimento_paciente DATE NOT NULL,
+      endereço_rua_paciente VARCHAR(150) NOT NULL,
+      cidade_paciente VARCHAR(55) NOT NULL,
+      estado_patiente VARCHAR(35) NOT NULL,
+      crm_médico VARCHAR(20) NOT NULL,
+      crm_médico_estado VARCHAR(2) NOT NULL,
+      nome_médico VARCHAR(150) NOT NULL,
+      email_médico VARCHAR(150) NOT NULL,
+      token_resultado_exame VARCHAR(10) NOT NULL,
+      data_exame DATE NOT NULL,
+      tipo_exame VARCHAR(50) NOT NULL,
+      limites_tipo_exame VARCHAR(10) NOT NULL,
+      resultado_tipo_exame INTEGER NOT NULL
+      )"
+    )
   end
 
   def all

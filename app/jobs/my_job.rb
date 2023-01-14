@@ -4,8 +4,8 @@ require './data.rb'
 class MyJob
   include Sidekiq::Job
 
-  def perform(json_data)
-    Data.new.import_from_csv(json_data)
+  def perform
+    Data.new.import_from_csv
     puts 'Arquivo importado com sucesso!'
   end
 end
