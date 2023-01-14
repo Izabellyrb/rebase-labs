@@ -5,6 +5,7 @@ require './data.rb'
 
 
 get '/api/tests' do
+  content_type :json
   rows = CSV.read("./data.csv", col_sep: ';')
 
   columns = rows.shift
@@ -17,13 +18,15 @@ get '/api/tests' do
   end.to_json
 end
 
-# post '/import' do
-#   #csv = request.body.read
+post '/import' do
+  Data.new.insert_data
+  'Arquivo importado!'
+end
 
-#   MyJob.perform_async
-
-#   'Ok'
-# end
+post '/import_async' do
+  MyJob.perform_async
+  'Arquivo importado com sucesso!'
+end
 
 get '/api/mdata' do
   content_type :json

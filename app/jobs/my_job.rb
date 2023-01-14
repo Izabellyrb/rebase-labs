@@ -1,10 +1,10 @@
 require 'sidekiq'
+require './data.rb'
 
 class MyJob
   include Sidekiq::Job
 
-  def perform(csv)
-    MyQuery.new.import_from_csv(csv)
-    puts 'Exames foram importados.'
+  def perform
+    Data.new.import_from_csv
   end
 end

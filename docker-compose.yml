@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   app:
-    image: 'ruby'
+    image: ruby
     command: sh -c "bundle && ruby server.rb" 
     working_dir: /app
     volumes:
@@ -13,14 +13,21 @@ services:
       REDIS_URL: redis://redis:6379/0
     ports:
       - 3000:3000
+
   postgres:
     image: postgres
     volumes: 
       - pgdata_rebase_labs:/var/lib/postgresql/data
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
+
   redis:
     image: redis
+
+  sidekiq:
+    image: aschzero/sidekiq-web
+    command: sh -c "sidekiq -r ./app/jobs/my_job.rb"
+
 volumes:
   rubygems:
   gemconfig:

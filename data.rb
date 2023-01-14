@@ -1,5 +1,5 @@
 require 'csv'
-# require './app/jobs/my_job'
+require './app/jobs/my_job'
 
 class Data
   attr_accessor :conn
