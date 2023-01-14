@@ -13,8 +13,8 @@ Uma app web para listagem de exames médicos.
 ## Atualizações na app
 [x] Importação dos dados do CSV para o banco de dados SQL (lab 1);
 [x] Exibição da listagem de exames de forma mais amigavel ao usuário no localhost (lab 2);
-[] Criar endpoint para importar os dados do CSV de forma assíncrona (lab 3) _em desenvolvimento_;
-[] Filtrar exames a partir de um token de resultado (lab 4)
+[x] Criar endpoint para importar os dados do CSV de forma assíncrona (lab 4)
+[] Filtrar exames a partir de um token de resultado (lab 3) _em desenvolvimento_;
 
 ## Premissa
 
