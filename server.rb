@@ -1,10 +1,11 @@
 require 'sinatra'
+require 'pg'
 require 'rack/handler/puma'
-require 'csv'
-require_relative 'import_from_csv'
+require './data.rb'
 
 
 get '/api/tests' do
+  content_type :json
   rows = CSV.read("./data.csv", col_sep: ';')
 
   columns = rows.shift
@@ -17,12 +18,23 @@ get '/api/tests' do
   end.to_json
 end
 
-get '/api/mdata' do
-  ImportFromCsv.new.all
-end
-
 get '/' do
   File.read('./public/index.html')
+end
+
+get '/api/mdata' do
+  content_type :json
+  import = Data.new.all.to_json
+end
+
+post '/import' do
+  Data.new.insert_data(params[:json_data])
+  'Arquivo importado!'
+end
+
+post '/import_async' do
+  MyJob.perform_async(params[:json_data])
+
 end
 
 Rack::Handler::Puma.run(
