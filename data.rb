@@ -21,7 +21,7 @@ class Data
     end
   end
 
-  def insert_data
+  def insert_data(json_data)
     csv_data.each do |row|
       @conn.exec(
         "INSERT INTO EXAMS (cpf, nome_paciente, email_paciente, data_nascimento_paciente, 

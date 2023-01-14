@@ -18,14 +18,8 @@ get '/api/tests' do
   end.to_json
 end
 
-post '/import' do
-  Data.new.insert_data
-  'Arquivo importado!'
-end
-
-post '/import_async' do
-  MyJob.perform_async
-  'Arquivo importado com sucesso!'
+get '/' do
+  File.read('./public/index.html')
 end
 
 get '/api/mdata' do
@@ -33,8 +27,14 @@ get '/api/mdata' do
   import = Data.new.all.to_json
 end
 
-get '/' do
-  File.read('./public/index.html')
+post '/import' do
+  Data.new.insert_data(params[:json_data])
+  'Arquivo importado!'
+end
+
+post '/import_async' do
+  MyJob.perform_async(params[:json_data])
+
 end
 
 Rack::Handler::Puma.run(
