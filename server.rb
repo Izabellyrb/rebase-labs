@@ -19,13 +19,19 @@ get '/api/tests' do
 end
 
 get '/' do
-  File.read('./public/index.html')
+  erb :index
 end
 
 get '/api/mdata' do
   content_type :json
-  import = Data.new.all.to_json
+  Data.new.all.to_json
 end
+
+get '/api/mdata/:token' do
+  content_type :json
+  Data.new.find(params[:token]).to_json
+end
+
 
 post '/import' do
   Data.new.insert_data
@@ -34,7 +40,12 @@ end
 
 post '/import_async' do
   MyJob.perform_async
+end
 
+get '/token_search' do
+  @token = params[:token_query]
+  @exams_search = Data.new.find(@token)
+  erb :token_search
 end
 
 Rack::Handler::Puma.run(

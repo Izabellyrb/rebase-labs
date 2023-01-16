@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+    <title>Busca de Exames</title>
+  </head>
+  <body>
+    <h1> Foram encontrados <span class='emphasis'><%=@exams_search.count%></span> resultados na sua busca por <span id='emphasis'>'<%= @token %>'</span> </h1>
+    <div class="cards_area">
+      <% if @exams_search.any? %>
+        <% @exams_search.each do |exam| %>
+        <div class="card">
+          <ul>
+            <li><b>Nome do(a) paciente: </b><%= exam['nome_paciente'] %> </li>
+            <li><b> CPF: </b><%= exam['cpf'] %> </li>
+            <li><b> CRM do Médico responsável: </b><%= exam['crm_médico'] %> </li>
+            <li><b> Data do exame: </b><%= Date.parse(exam['data_exame']).strftime("%d/%m/%Y") %> </li>
+            <li><b> Tipo de exame: </b><%= exam['tipo_exame'] %> </li>
+            <li><b> Resultado do exame: </b><%= exam['resultado_tipo_exame'] %>
+            <li><b> Limite do exame: </b><%= exam['limites_tipo_exame'] %> </li>
+          </ul>
+        </div>
+        <% end %>
+      <% else %>
+    </div>
+      <h2> Não foram encontrados resultados 😢. Tente novamente. </h2>
+    <% end %>
+  </body>
+</html>
