@@ -29,7 +29,7 @@ thead {
   background-color: #a77aa7;
 }
 
-tr:hover {background-color: #ddd;}
+tr#results:hover {background-color: #ddd;}
 
 form.search {
   background-color:#ac9bbd;

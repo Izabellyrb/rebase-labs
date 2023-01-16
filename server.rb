@@ -24,8 +24,14 @@ end
 
 get '/api/mdata' do
   content_type :json
-  import = Data.new.all.to_json
+  Data.new.all.to_json
 end
+
+get '/api/mdata/:token' do
+  content_type :json
+  Data.new.find(params[:token]).to_json
+end
+
 
 post '/import' do
   Data.new.insert_data
