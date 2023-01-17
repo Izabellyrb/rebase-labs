@@ -16,17 +16,22 @@
     <div class="cards_area">
       <% if @exams_search.any? %>
         <% @exams_search.each do |exam| %>
-        <div class="card">
-          <ul>
-            <li><b>Nome do(a) paciente: </b><%= exam['nome_paciente'] %> </li>
-            <li><b> CPF: </b><%= exam['cpf'] %> </li>
-            <li><b> CRM do Médico responsável: </b><%= exam['crm_médico'] %> </li>
-            <li><b> Data do exame: </b><%= Date.parse(exam['data_exame']).strftime("%d/%m/%Y") %> </li>
-            <li><b> Tipo de exame: </b><%= exam['tipo_exame'] %> </li>
-            <li><b> Resultado do exame: </b><%= exam['resultado_tipo_exame'] %>
-            <li><b> Limite do exame: </b><%= exam['limites_tipo_exame'] %> </li>
-          </ul>
-        </div>
+          <div class="card">
+            <ul>
+              <li><b>Nome do(a) paciente: <%= exam['nome_paciente'] %> </b></li>
+              <li><b>E-mail: <%= exam['email_paciente'] %> </b></li>
+              <li><b> CPF: <%= exam['cpf'] %> </li></b></li>
+              <li><b> Data do exame: </b><%= Date.parse(exam['data_exame']).strftime("%d/%m/%Y") %> </li>
+              <li><b> Data de nascimento: </b><%= Date.parse(exam['data_nascimento_paciente']).strftime("%d/%m/%Y") %> </li>
+                
+              <li><b> Nome do Médico responsável: </b><%= exam['nome_médico'] %> </li>
+              <li><b> CRM: </b><%= exam['crm_médico'] %> -- <b>Estado: </b><%= exam['crm_médico_estado'] %> </li>
+              <li><b> Tipo de exame: </b><%= exam['tipo_exame'] %> </li>
+              <li><b> Limite do exame: </b><%= exam['limites_tipo_exame'] %> </li>
+              <li><b> Resultado do exame: </b><%= exam['resultado_tipo_exame'] %>
+            </ul>
+          </div>
+        
         <% end %>
       <% else %>
     </div>
