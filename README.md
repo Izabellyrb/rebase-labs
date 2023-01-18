@@ -136,6 +136,6 @@ Resposta:
 - [x] Filtrar exames a partir de um token de resultado (lab 3);
 <br>
   
- ❗ Para mais detalhes sobre a premissa e as fases do projeto acessar[`project_instructions`](https://github.com/Izabellyrb/rebase-labs/blob/main/README.md)
+ ❗ Para mais detalhes sobre a premissa e as fases do projeto acessar [`project_instructions`](https://github.com/Izabellyrb/rebase-labs/blob/main/project_instructions.md)
 
  
