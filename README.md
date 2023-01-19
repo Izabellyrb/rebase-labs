@@ -27,12 +27,17 @@ Laboratório disponibilizado pela Rebase em parceria com a Campus Code.
 
 No seu terminal, clone o projeto:
 ```sh
-https://github.com/Izabellyrb/rebase-labs.git
+git clone https://github.com/Izabellyrb/rebase-labs.git
 ```
 
 Já dentro do projeto, inicie a aplicação:
 ```sh
 docker compose up
+```
+
+Instale as gems necessárias:
+```sh
+bin/bundle
 ```
 
 _Caso vá rodar os testes, é necessário rodar o comando abaixo antes seguir para o próximo passo:_
