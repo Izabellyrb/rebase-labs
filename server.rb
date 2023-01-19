@@ -19,7 +19,7 @@ get '/api/mdata/:token' do
 end
 
 post '/import' do
-  Data.new.insert_data
+  Data.new.insert_data(params[:file])
   'Arquivo importado!'
 end
 

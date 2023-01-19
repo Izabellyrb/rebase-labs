@@ -1,7 +1,6 @@
 ENV['RACK_ENV'] = 'test'
 require "environment.rb"
-require 'capybara'
-require 'capybara/dsl'
+
 
 #require "./server.rb"
 
@@ -27,9 +26,9 @@ RSpec.configure do |config|
   def app
     Sinatra::Application
   end
-  Capybara.app = Sinatra::Application.new
-
+  Capybara.app = Sinatra::Application
   config.include Capybara::DSL
+
   
   config.after(:example) do
     conn = PG.connect(host: 'postgres', dbname: 'postgres', user: 'postgres')

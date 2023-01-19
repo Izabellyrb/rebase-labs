@@ -1,6 +1,8 @@
 # Web app de listagem de exames médicos
 App criado para listagem de exames médicos. <br>
-Laboratório disponibilizado pela Rebase em parceria com a Campus Code. 
+Laboratório disponibilizado pela Rebase em parceria com a Campus Code.
+
+ <br>
 
 ## ⚙ Configurações necessárias
 - [Ruby](https://www.ruby-lang.org/en/documentation/installation/) 
@@ -22,6 +24,7 @@ Laboratório disponibilizado pela Rebase em parceria com a Campus Code.
 <br>
 
 ## 🚀 Como rodar a aplicação
+
 No seu terminal, clone o projeto:
 ```sh
 https://github.com/Izabellyrb/rebase-labs.git
@@ -30,6 +33,11 @@ https://github.com/Izabellyrb/rebase-labs.git
 Já dentro do projeto, inicie a aplicação:
 ```sh
 docker compose up
+```
+
+_Caso vá rodar os testes, é necessário rodar o comando abaixo antes seguir para o próximo passo:_
+```sh
+ docker compose exec app rspec
 ```
 
 Crie a tabela que será populada rodando o script no terminal:
@@ -44,12 +52,12 @@ docker compose exec app ruby import_from_csv.rb
 
 Ou via requisição HTTP no endpoint:
 ```sh
-curl -d POST http://localhost:3000/import
+ curl -d POST http://localhost:3000/import?file=./data.csv
 ```
 
 A importação dos mesmos dados de forma assíncrona pode ser feita via requisição HTTP no endpoint:
 ```sh
-curl -d POST http://localhost:3000/import_async
+ curl -d POST http://localhost:3000/import_async?file=./data.csv
 ```
 
 Após subir o solicitado, na pagína inicial é possível ver a listagem de exames e fazer busca dos exames por Token (http://localhost:3000/). 
@@ -134,8 +142,16 @@ Resposta:
 - [x] Exibição da listagem de exames de forma mais amigavel ao usuário no localhost (lab 2);
 - [x] Criar endpoint para importar os dados do CSV de forma assíncrona (lab 4)
 - [x] Filtrar exames a partir de um token de resultado (lab 3);
-<br>
   
- ❗ Para mais detalhes sobre a premissa e as fases do projeto acessar [`project_instructions`](https://github.com/Izabellyrb/rebase-labs/blob/main/project_instructions.md)
+<br>
+
+## 🚧 Próximos passos
+- [ ] Maior cobertura de testes;
+- [ ] Otimização dos resultados de buscas;
+<br>
+<br>
+
+  
+ ❗ Para mais detalhes sobre a premissa e as fases do projeto, acesse [`project_instructions`](https://github.com/Izabellyrb/rebase-labs/blob/main/project_instructions.md)
 
  
