@@ -8,8 +8,8 @@ class Data
     @conn = PG.connect(host: 'postgres', dbname: 'postgres', user: 'postgres')
   end
 
-  def csv_data
-    rows = CSV.read("./data.csv", col_sep: ';')
+  def csv_data(file)
+    rows = CSV.read(file, col_sep: ';')
 
     columns = rows.shift
   
@@ -44,8 +44,8 @@ class Data
     )
   end
 
-  def insert_data
-    csv_data.each do |row|
+  def insert_data(file)
+    csv_data(file).each do |row|
       @conn.exec(
         "INSERT INTO EXAMS (cpf, nome_paciente, email_paciente, data_nascimento_paciente, 
                             endereço_rua_paciente, cidade_paciente, estado_patiente, crm_médico,
